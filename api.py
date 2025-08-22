@@ -68,7 +68,7 @@ def get_demographics(county: str = Query(None)):
 # --- Endpoint 2: cases ---
 @app.get("/cases")
 def get_cases(date: str = Query(None), county: str = Query(None)):
-    query = "SELECT * FROM CALIFORNIA_COVID19_DATASETS.COVID.CASES WHERE 1=1"
+    query = "SELECT * FROM CALIFORNIA_COVID_ANALYTICS.ANALYTICS.CASES WHERE 1=1"
     params = []
     if county:
         query += " AND AREA = %s"
@@ -86,7 +86,7 @@ def get_cases(date: str = Query(None), county: str = Query(None)):
 # --- Endpoint 3: cases demographics ---
 @app.get("/cases-demographics")
 def get_cases_demographics(date: str = Query(None), category: str = Query(None)):
-    query = "SELECT * FROM CALIFORNIA_COVID19_DATASETS.COVID.CASES_DEMOGRAPHICS WHERE 1=1"
+    query = "SELECT * FROM CALIFORNIA_COVID_ANALYTICS.ANALYTICS.CASES_DEMOGRAPHICS WHERE 1=1"
     params = []
     if category:
         query += " AND DEMOGRAPHIC_CATEGORY = %s"
@@ -104,7 +104,7 @@ def get_cases_demographics(date: str = Query(None), category: str = Query(None))
 # --- Endpoint 4: hospitals ---
 @app.get("/hospitals")
 def get_hospitals(date: str = Query(None), county: str = Query(None)):
-    query = "SELECT * FROM CALIFORNIA_COVID19_DATASETS.COVID.HOSPITALS_BY_COUNTY WHERE 1=1"
+    query = "SELECT * FROM CALIFORNIA_COVID_ANALYTICS.ANALYTICS.HOSPITALS_BY_COUNTY WHERE 1=1"
     params = []
     if county:
         query += " AND COUNTY = %s"
