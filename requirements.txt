@@ -1,0 +1,28 @@
+# Environment variables
+python-dotenv
+dotenv
+
+# Core web framework
+fastapi
+uvicorn
+
+# Data handling
+pandas
+numpy
+
+# Visualization
+plotly
+dash
+streamlit
+
+# Machine learning / stats
+scikit-learn
+sklearn
+statsmodels
+
+# Database connectors
+snowflake-connector-python
+pymongo
+
+# API calls
+requests
