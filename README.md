@@ -50,13 +50,34 @@ It combines official demographic datasets with COVID-19 case, death, and hospita
 
 ## ⚙️ Setup Instructions
 
-### 1. Install dependencies
+### 1. Clone the repository
+
+```bash
+git clone https://github.com/DanielsStulpe/big_data_bootcamp_project
+cd big_data_bootcamp_project
+```
+
+### 2. Create a virtual environment (recommended)
+
+```bash
+# Linux/macOS
+python3 -m venv venv
+source venv/bin/activate
+
+# Windows
+python -m venv venv
+venv\Scripts\activate
+```
+
+> ✅ This ensures all dependencies are isolated and avoids conflicts with system packages.
+
+### 3. Install dependencies
 
 ```bash
 pip install -r requirements.txt
 ```
 
-### 2. Create `.env` file
+### 4. Create `.env` file
 
 Create a `.env` file in the project root with the following variables:
 
@@ -75,41 +96,31 @@ MONGO_PASSWORD=your_password
 MONGO_CLUSTER=cluster0.abcde.mongodb.net
 ```
 
-🔹 If you want to use **clustered MongoDB (Atlas)**:
+* For **clustered MongoDB (Atlas)**, uncomment the connection code in `api.py` and `visualization.py`, and set `get_mongo_client(local=False)` in `visualization.py`.
+* For **local MongoDB**, install MongoDB Community Server ([link](https://www.mongodb.com/try/download/community)) and run `mongod` in terminal. Keep `get_mongo_client(local=True)` in `visualization.py`.
 
-* Uncomment the MongoDB connection code in `api.py` and `visualization.py`
-* For Dash (`visualization.py`), set `get_mongo_client(local=False)`
-
-🔹 If you want to use **local MongoDB**:
-
-* Install [MongoDB Community Server](https://www.mongodb.com/try/download/community)
-* Run `mongod` in the terminal where MongoDB is installed
-* Keep `get_mongo_client(local=True)` in `visualization.py`
-
-### 3. Prepare Snowflake database
+### 5. Prepare Snowflake database
 
 1. Add the free **CALIFORNIA\_COVID19\_DATASETS** dataset from Snowflake Marketplace.
-2. Run `snf_script.sql` in a Snowflake worksheet to set up schemas, tables, and views.
+2. Run `snf_script.sql` in a Snowflake worksheet to create schemas, tables, and views.
 
-### 4. Load demographics data
+### 6. Load demographics data
 
-Run the ETL pipeline to load and transform county demographics:
+Run the ETL pipeline to extract, transform, and load county demographics:
 
 ```bash
 python ca_demographics_etl.py
 ```
 
-### 5. Start the API
-
-Run the FastAPI server:
+### 7. Start the API
 
 ```bash
 uvicorn api:app --reload
 ```
 
-API docs will be available at: [http://127.0.0.1:8000/docs](http://127.0.0.1:8000/docs) and also in [API\_DOCS.md](API_DOCS.md).
+API docs will be available at: [http://127.0.0.1:8000/docs](http://127.0.0.1:8000/docs) and also in the `API_DOCS.md` file.
 
-### 6. Run Dash visualizations
+### 8. Run Dash visualizations
 
 ```bash
 python visualization.py
@@ -117,9 +128,10 @@ python visualization.py
 
 Open the dashboard in your browser at the printed local URL.
 
-### 7. Run Streamlit analytics
+### 9. Run Streamlit analytics
 
 ```bash
 streamlit run analytics.py
 ```
+
 
